@@ -1,0 +1,15 @@
+@startuml
+title Диаграмма компонентов для сервиса управления отоплением
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Container(heatingService, "Сервис управления отоплением", "Go", "Управляет отоплением в домах")
+
+Component(heatingController, "Контроллер отопления", "Обрабатывает запросы на управление отоплением")
+Component(temperatureSensor, "Датчик температуры", "Получает данные о температуре")
+Component(heatingRepository, "Репозиторий отопления", "Управляет данными об отоплении")
+
+Rel(heatingController, temperatureSensor, "Запрашивает данные")
+Rel(heatingController, heatingRepository, "Читает и записывает данные")
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+title Диаграмма контейнеров для системы «Тёплый дом»
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Container(homeService, "Сервис управления домом", "Go", "Управляет всеми аспектами дома")
+Container(lightService, "Сервис управления освещением", "Go", "Управляет освещением в домах")
+Container(temperatureService, "Сервис управления температурой", "Go", "Управляет температурой в домах")
+Container(gateService, "Сервис управления воротами", "Go", "Управляет доступом через ворота")
+
+Component(lightController, "Контроллер освещения", "Обрабатывает запросы на управление освещением")
+Component(lightRepository, "Репозиторий освещения", "Управляет данными об освещении")
+
+Component(temperatureController, "Контроллер температуры", "Обрабатывает запросы на управление температурой")
+Component(temperatureRepository, "Репозиторий температуры", "Управляет данными о температуре")
+
+Component(gateController, "Контроллер ворот", "Обрабатывает запросы на управление воротами")
+Component(gateRepository, "Репозиторий ворот", "Управляет данными о воротах")
+
+Rel(homeService, lightService, "Использует")
+Rel(homeService, temperatureService, "Использует")
+Rel(homeService, gateService, "Использует")
+Rel(lightService, lightController, "Содержит")
+Rel(lightController, lightRepository, "Читает и записывает данные")
+Rel(temperatureService, temperatureController, "Содержит")
+Rel(temperatureController, temperatureRepository, "Читает и записывает данные")
+Rel(gateService, gateController, "Содержит")
+Rel(gateController, gateRepository, "Читает и записывает данные")
+
+@enduml

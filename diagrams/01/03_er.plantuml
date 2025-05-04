@@ -1,0 +1,41 @@
+@startuml
+title ER-диаграмма для системы «Тёплый дом»
+
+entity "Пользователь" as User {
+    + userId: int <<PK>>
+    + username: string
+    + email: string
+    + passwordHash: string
+}
+
+entity "Устройство отопления" as HeatingDevice {
+    + deviceId: int <<PK>>
+    + userId: int <<FK>>
+    + status: string
+    + temperatureSetting: float
+}
+
+entity "Устройство освещения" as LightDevice {
+    + deviceId: int <<PK>>
+    + userId: int <<FK>>
+    + status: string
+}
+
+entity "Автоматические ворота" as GateDevice {
+    + deviceId: int <<PK>>
+    + userId: int <<FK>>
+    + status: string
+}
+
+entity "Датчик температуры" as TemperatureSensor {
+    + sensorId: int <<PK>>
+    + userId: int <<FK>>
+    + currentTemperature: float
+}
+
+User ||--o{ HeatingDevice : "владеет"
+User ||--o{ LightDevice : "владеет"
+User ||--o{ GateDevice : "владеет"
+User ||--o{ TemperatureSensor : "владеет"
+
+@enduml

@@ -1,0 +1,178 @@
+openapi: 3.0.0
+info:
+  title: API для системы «Тёплый дом»
+  description: API для управления умными устройствами в системе «Тёплый дом».
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /heating/{deviceId}:
+    get:
+      summary: Получить информацию об устройстве отопления
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          description: Идентификатор устройства отопления
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Успех
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deviceId:
+                    type: integer
+                  status:
+                    type: string
+                  temperatureSetting:
+                    type: number
+                    format: float
+        '404':
+          description: Устройство не найдено
+        '500':
+          description: Ошибка сервера
+
+    post:
+      summary: Обновить состояние устройства отопления
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deviceId:
+                  type: integer
+                status:
+                  type: string
+                temperatureSetting:
+                  type: number
+                  format: float
+      responses:
+        '200':
+          description: Успех
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Неверный запрос
+        '500':
+          description: Ошибка сервера
+
+  /light/{deviceId}:
+    get:
+      summary: Получить информацию об устройстве освещения
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          description: Идентификатор устройства освещения
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Успех
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deviceId:
+                    type: integer
+                  status:
+                    type: string
+        '404':
+          description: Устройство не найдено
+        '500':
+          description: Ошибка сервера
+
+    post:
+      summary: Обновить состояние устройства освещения
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deviceId:
+                  type: integer
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Успех
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Неверный запрос
+        '500':
+          description: Ошибка сервера
+
+  /gate/{deviceId}:
+    get:
+      summary: Получить информацию об автоматических воротах
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          description: Идентификатор автоматических ворот
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Успех
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deviceId:
+                    type: integer
+                  status:
+                    type: string
+        '404':
+          description: Устройство не найдено
+        '500':
+          description: Ошибка сервера
+
+    post:
+      summary: Обновить состояние автоматических ворот
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deviceId:
+                  type: integer
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Успех
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Неверный запрос
+        '500':
+          description: Ошибка сервера

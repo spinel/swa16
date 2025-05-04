@@ -83,4 +83,4 @@
 
 # Задание 5. Работа с docker и docker-compose
 
-docker-compose up -d
+docker compose up -d

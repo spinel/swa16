@@ -3,25 +3,41 @@ title Контекстная диаграмма микросервисной а�
 
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
 
-
 actor User as user
 actor MobileApp as mobileApp
 actor WebApp as webApp
 
 rectangle "Система «Тёплый дом»" {
-    rectangle "Home Service" as homeService {
-        [Light Service]
-        [Temperature Service]
-        [Gate Service]
+    rectangle "Device Management Service" as deviceManagementService {
+        [Управление отоплением]
+        [Управление освещением]
+        [Управление воротами]
+    }
+    rectangle "Monitoring Service" as monitoringService {
+        [Сбор данных]
+        [Отображение данных]
+    }
+    rectangle "User Management Service" as userManagementService {
+        [Регистрация пользователей]
+        [Аутентификация]
+    }
+    rectangle "Support Service" as supportService {
+        [Создание тикетов]
+        [Отслеживание запросов]
     }
 }
 
-user --> homeService : Управление домом
-mobileApp --> homeService : API запросы
-webApp --> homeService : API запросы
+mobileApp --> deviceManagementService : API запросы
+mobileApp --> monitoringService : API запросы
+mobileApp --> userManagementService : API запросы
+mobileApp --> supportService : API запросы
 
-homeService --> [Light Service] : Запросы на управление освещением
-homeService --> [Temperature Service] : Запросы на управление температурой
-homeService --> [Gate Service] : Запросы на управление воротами
+webApp --> deviceManagementService : API запросы
+webApp --> monitoringService : API запросы
+webApp --> userManagementService : API запросы
+webApp --> supportService : API запросы
+
+user --> mobileApp : Использует
+user --> webApp : Использует
 
 @enduml

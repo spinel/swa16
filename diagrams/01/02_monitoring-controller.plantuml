@@ -3,10 +3,10 @@ title Диаграмма компонентов для сервиса монит
 
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
 
-Container(monitoringService, "Сервис мониторинга", "Go", "Собирает и отображает данные о состоянии устройств")
-
-Component(monitoringController, "Контроллер мониторинга", "Обрабатывает запросы на получение данных")
-Component(monitoringRepository, "Репозиторий мониторинга", "Управляет данными о состоянии устройств")
+Container(monitoringService, "Сервис мониторинга", "Go", "Собирает и отображает данные о состоянии устройств") {
+    Component(monitoringController, "Контроллер мониторинга", "Обрабатывает запросы на получение данных")
+    Component(monitoringRepository, "Репозиторий мониторинга", "Управляет данными о состоянии устройств")
+}
 
 Rel(monitoringController, monitoringRepository, "Читает данные")
 

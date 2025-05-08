@@ -1,0 +1,28 @@
+@startuml
+class Light {
+  +String id
+  +String status
+  +void turnOn()
+  +void turnOff()
+  +String getStatus()
+}
+
+class LightController {
+  +List<Light> lights
+  +void addLight(light Light)
+  +void removeLight(lightID String)
+  +void turnOnLight(lightID String)
+  +void turnOffLight(lightID String)
+  +String getLightStatus(lightID String)
+}
+
+class LightRepository {
+  +List<Light> lightData
+  +void saveLightData(light Light)
+  +Light getLightData(lightID String)
+}
+
+LightController "1" -- "0..*" Light : manages
+LightRepository "1" -- "0..*" Light : stores
+LightController "1" -- "1" LightRepository : uses
+@enduml

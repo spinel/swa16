@@ -1,0 +1,43 @@
+@startuml
+title Контекстная диаграмма микросервисной архитектуры для системы «Тёплый дом»
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
+
+actor User as user
+actor MobileApp as mobileApp
+actor WebApp as webApp
+
+rectangle "Система «Тёплый дом»" {
+    rectangle "Device Management Service" as deviceManagementService {
+        [Управление отоплением]
+        [Управление освещением]
+        [Управление воротами]
+    }
+    rectangle "Monitoring Service" as monitoringService {
+        [Сбор данных]
+        [Отображение данных]
+    }
+    rectangle "User Management Service" as userManagementService {
+        [Регистрация пользователей]
+        [Аутентификация]
+    }
+    rectangle "Support Service" as supportService {
+        [Создание тикетов]
+        [Отслеживание запросов]
+    }
+}
+
+mobileApp --> deviceManagementService : API запросы
+mobileApp --> monitoringService : API запросы
+mobileApp --> userManagementService : API запросы
+mobileApp --> supportService : API запросы
+
+webApp --> deviceManagementService : API запросы
+webApp --> monitoringService : API запросы
+webApp --> userManagementService : API запросы
+webApp --> supportService : API запросы
+
+user --> mobileApp : Использует
+user --> webApp : Использует
+
+@enduml

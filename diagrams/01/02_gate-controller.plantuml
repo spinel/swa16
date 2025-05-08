@@ -1,0 +1,13 @@
+@startuml
+title Диаграмма компонентов для сервиса управления воротами
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Container(gateService, "Сервис управления воротами", "Go", "Управляет автоматическими воротами") {
+    Component(gateController, "Контроллер ворот", "Обрабатывает запросы на управление воротами")
+    Component(gateRepository, "Репозиторий ворот", "Управляет данными о воротах")
+}
+
+Rel(gateController, gateRepository, "Читает и записывает данные")
+
+@enduml

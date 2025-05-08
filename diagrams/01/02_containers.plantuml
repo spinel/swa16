@@ -1,0 +1,15 @@
+@startuml
+title Диаграмма контейнеров для системы «Тёплый дом»
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Container(homeService, "Сервис управления домом", "Go", "Управляет всеми аспектами дома")
+Container(lightService, "Сервис управления освещением", "Go", "Управляет освещением в домах")
+Container(temperatureService, "Сервис управления температурой", "Go", "Управляет температурой в домах")
+Container(gateService, "Сервис управления воротами", "Go", "Управляет доступом через ворота")
+
+Rel(homeService, lightService, "Использует")
+Rel(homeService, temperatureService, "Использует")
+Rel(homeService, gateService, "Использует")
+
+@enduml

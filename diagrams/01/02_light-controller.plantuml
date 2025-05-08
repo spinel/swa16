@@ -1,0 +1,13 @@
+@startuml
+title Диаграмма компонентов для сервиса управления освещением
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Container(lightService, "Сервис управления освещением", "Go", "Управляет освещением в домах") {
+    Component(lightController, "Контроллер освещения", "Обрабатывает запросы на управление освещением")
+    Component(lightRepository, "Репозиторий освещения", "Управляет данными об освещении")
+}
+
+Rel(lightController, lightRepository, "Читает и записывает данные")
+
+@enduml
